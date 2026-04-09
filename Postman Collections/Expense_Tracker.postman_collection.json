@@ -1,0 +1,602 @@
+{
+  "info": {
+    "_postman_id": "bf3ae6f2-811a-4d1c-ab54-b41bcf2ca0ed",
+    "name": "Expense_Tracker",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "31375698"
+  },
+  "item": [
+    {
+      "name": "Get All Expenses",
+      "request": {
+        "auth": {
+          "type": "basic",
+          "basic": [
+            {
+              "key": "password",
+              "value": "ganesh",
+              "type": "string"
+            },
+            {
+              "key": "username",
+              "value": "ganesh",
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/expenses",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ExpenseByID",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/expenses?id1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses"
+          ],
+          "query": [
+            {
+              "key": "id1",
+              "value": null
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "delete_expense",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/expenses/10",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses",
+            "10"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Save Expense",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"expenseName\": \"sooooos\",\r\n  \"description\": \"sooooooo\",\r\n  \"amount\":900,\r\n  \"categoryId\":5\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/expenses",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Expense",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"expenseName\": \"Dinner\",\r\n  \"description\": \"Evening food\",\r\n  \"amount\": 300,\r\n  \"categoryId\": 3\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/expenses/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FilterByCategory",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/expenses/category?categoryId=6",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses",
+            "category"
+          ],
+          "query": [
+            {
+              "key": "categoryId",
+              "value": "6"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Pagination_And_Sorting",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Patch Update Expense",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"amount\":500\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/expenses/1",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "FilterByExpenseName",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "Register User",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userName\": \"doraemon\",\r\n  \"email\": \"doraemon@gmail.com\",\r\n  \"password\": \"doraemon@12345\",\r\n  \"age\": 29\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/auth/register",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "auth",
+            "register"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": ""
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User",
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "exec": [
+              "let response = pm.response.json();\r",
+              "pm.environment.set(\"auth_token\", response.jwtToken);\r",
+              "console.log(response)"
+            ],
+            "type": "text/javascript",
+            "packages": {},
+            "requests": {}
+          }
+        }
+      ],
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": " {\"email\": \"sai@gmail.com\",\r\n  \"password\":\"sai@12345\"\r\n  }",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/auth/login",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "auth",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "GetAllUsers",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            ""
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "LoggedInUserProfile",
+      "request": {
+        "auth": {
+          "type": "noauth"
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/profiles/me",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "profiles",
+            "me"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_User_Put",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"userName\": \"Ganesh Updated\",\r\n  \"email\": \"ganesh@gmail.com\",\r\n  \"password\": \"ganesh\",\r\n  \"age\": 25\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/profiles/user",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "profiles",
+            "user"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update_User_Patch",
+      "request": {
+        "method": "PATCH",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"age\":\"98\"\r\n}"
+        },
+        "url": {
+          "raw": "{{url}}/user/profile",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "user",
+            "profile"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Deactivate_User",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/profiles/deactivate/4",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "profiles",
+            "deactivate",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Save Category",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"categoryName\":\"soooo\",\r\n    \"categoryDescription\":\"sooooo\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/categories",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get All Categories",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/categories",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "categories"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Delete Category",
+      "request": {
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/categories/5",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "categories",
+            "5"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Update Category",
+      "request": {
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n     \"categoryName\": \"Shopping and entertainment\",\r\n    \"categoryDescription\": \"extra shopping\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/categories/3",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "categories",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Filter  Expense by date",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/expenses/date?startDate=2026-01-01T00:00:00&endDate=2026-12-31T00:00:00",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "expenses",
+            "date"
+          ],
+          "query": [
+            {
+              "key": "startDate",
+              "value": "2026-01-01T00:00:00"
+            },
+            {
+              "key": "endDate",
+              "value": "2026-12-31T00:00:00"
+            }
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Logout User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "url": {
+          "raw": "{{url}}/auth/signout",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "auth",
+            "signout"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "RefreshToken",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"refreshToken\":\"4bcac1be-dcc4-44e4-a562-48ba39115f71\"\r\n}\r\n\r\n\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "{{url}}/auth/refreshtoken",
+          "host": [
+            "{{url}}"
+          ],
+          "path": [
+            "auth",
+            "refreshtoken"
+          ]
+        }
+      },
+      "response": []
+    }
+  ],
+  "auth": {
+    "type": "bearer",
+    "bearer": [
+      {
+        "key": "token",
+        "value": "eyJhbGciOiJIUzM4NCJ9.eyJhdXRob3JpdGllcyI6WyJVUERBVEVfRVhQRU5TRSIsIlJFQURfRVhQRU5TRSIsIlVQREFURV9DQVRFR09SWSIsIkRFTEVURV9FWFBFTlNFIiwiQ1JFQVRFX0VYUEVOU0UiLCJST0xFX1VTRVIiLCJDUkVBVEVfQ0FURUdPUlkiLCJVUERBVEVfVVNFUiIsIlJFQURfVVNFUiIsIkRFTEVURV9DQVRFR09SWSIsIlJFQURfQ0FURUdPUlkiXSwic3ViIjoic2FpQGdtYWlsLmNvbSIsImlhdCI6MTc3NTQ4NDQ4OCwiZXhwIjoxNzc1NTcwODg4fQ.9-Hn4nvsquELe0p9VK3NUmYaBUzZOKYl6OPWBOPs0Nq9rvsmmtnMIBUfMo2caLQ5",
+        "type": "string"
+      }
+    ]
+  },
+  "event": [
+    {
+      "listen": "prerequest",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          "pm.request.headers.add({\r",
+          "    key:\"Authorization\",\r",
+          "    value:\"Bearer \" +pm.environment.get(\"auth_token\")    \r",
+          "    \r",
+          "})"
+        ]
+      }
+    },
+    {
+      "listen": "test",
+      "script": {
+        "type": "text/javascript",
+        "packages": {},
+        "requests": {},
+        "exec": [
+          ""
+        ]
+      }
+    }
+  ]
+}
